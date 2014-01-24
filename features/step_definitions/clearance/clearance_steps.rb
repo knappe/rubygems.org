@@ -79,6 +79,11 @@ Then /^a password reset message should be sent to "(.*)"$/ do |email|
   assert !user.confirmation_token.blank?
 end
 
+And /^the password reset link sent to "(.*)" should be HTTPS$/ do |email|
+  user = User.find_by_email(email)
+  assert_match /https:\/\//, edit_user_password_url(:user_id => user)
+end
+
 When /^I follow the password reset link sent to "(.*)"$/ do |email|
   user = User.find_by_email(email)
   visit edit_user_password_path(:user_id => user,

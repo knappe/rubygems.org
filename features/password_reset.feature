@@ -10,6 +10,7 @@ Feature: Password reset with handle
     And I fill in "Email address" with "email@example.com"
     And I press "Reset password"
     Then a password reset message should be sent to "email@example.com"
+    And the password reset link sent to "email@example.com" should be HTTPS
     When I follow the password reset link sent to "email@example.com"
     And I update my password with "newpassword"
     Then I should be signed in
