@@ -86,7 +86,7 @@ end
 
 When /^I follow the password reset link sent to "(.*)"$/ do |email|
   user = User.find_by_email(email)
-  visit edit_user_password_path(:user_id => user,
+  visit edit_user_password_url(:user_id => user,
                                 :token   => user.confirmation_token)
 end
 
