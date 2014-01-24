@@ -139,8 +139,12 @@ Gemcutter::Application.routes.draw do
 
   resources :passwords, :only => [:new, :create]
 
-  resources :users do
-    resource :password, :only => [:create, :edit, :update]
+  scope :protocol => 'https://', :constraints => { :protocol => 'https://' } do
+    resources :users do
+      resource :password, :only => [:create, :edit, :update], :constraints => { :protocol => "https" }
+    end
   end
+
+
 
 end
